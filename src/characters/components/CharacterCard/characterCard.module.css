@@ -1,0 +1,21 @@
+.card {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    background-color: #e1e1e1;
+    border-radius: 15px;
+}
+
+.header {
+    padding: var(--spacing-0) var(--spacing-5);
+    display: flex;
+    justify-content: space-between;
+}
+
+.footer {
+    padding: var(--spacing-5);
+}
+
+.name {
+    font-weight: var(--fontWeight-medium);
+}

@@ -1,0 +1,27 @@
+.status {
+    display: flex;
+    align-items: center;
+}
+
+.statusIndicator {
+    height: 15px;
+    width: 15px;
+    display: block;
+    margin-right: var(--spacing-1);
+    border-radius: 50%;
+}
+
+.statusIndicatorAlive {
+    composes: statusIndicator;
+    background-color: greenyellow;
+}
+
+.statusIndicatorDead {
+    composes: statusIndicator;
+    background-color: red;
+}
+
+.statusIndicatorUnknown {
+    composes: statusIndicator;
+    background-color: darkslategray;
+}
