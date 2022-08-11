@@ -1,7 +1,7 @@
 # Rick and Morty React Playground
 
 Example React application created for training and educational purposes.
-It utilises open [Rick and Morty API](https://rickandmortyapi.com/documentation). 
+It utilises open [Rick and Morty API](https://rickandmortyapi.com/documentation).
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 

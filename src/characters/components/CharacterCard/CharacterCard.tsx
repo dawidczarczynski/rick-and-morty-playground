@@ -15,11 +15,10 @@ export function CharacterCard({ character }: CharacterCardProps) {
                 <p className={styles.name}>{character.name}</p>
                 <CharacterStatus status={character.status} />
             </header>
-            <img
+            <div
                 className={styles.cardimage}
-                src={character.image}
-                alt={character.name}
-            />
+                style={{ backgroundImage: `url(${character.image})` }}
+            ></div>
             <footer className={styles.footer}>
                 {character.species} {character.gender} from{' '}
                 {character.origin.name}

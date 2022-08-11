@@ -1,0 +1,7 @@
+.sidebar {
+    width: var(--sidebar-width);
+    height: 100vh;
+    position: fixed;
+    padding: var(--spacing-5);
+    box-sizing: border-box;
+}

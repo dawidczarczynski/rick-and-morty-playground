@@ -1,16 +1,16 @@
 import React from 'react';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-import { CharactersWrapper } from './characters/components/CharactersWrapper';
-import styles from './app.module.css';
+import { CharactersWrapper } from 'characters/components/CharactersWrapper';
+import { Layout } from 'layout/components/Layout';
 
 const queryClient = new QueryClient();
 
 export function App() {
     return (
-        <div className={styles.mainwrapper}>
+        <Layout>
             <QueryClientProvider client={queryClient}>
                 <CharactersWrapper />
             </QueryClientProvider>
-        </div>
+        </Layout>
     );
 }

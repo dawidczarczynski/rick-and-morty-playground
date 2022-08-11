@@ -11,10 +11,10 @@ export function InfiniteScroll({
     lastItemHandler,
 }: PropsWithChildren<InfiniteScrollProps>) {
     const [lastItemRef] = useInView({
-        onChange: lastItemInView => lastItemInView && lastItemHandler()
+        onChange: lastItemInView => lastItemInView && lastItemHandler(),
     });
     const childrenCount = Children.count(children);
- 
+
     if (!children) {
         return null;
     }

@@ -1,0 +1,4 @@
+.maincontent {
+    padding-left: var(--sidebar-width);
+    width: var(--main-width);
+}
