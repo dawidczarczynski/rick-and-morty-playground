@@ -9,6 +9,9 @@
     "homepage": "https://dawidczarczynski.github.io/rick-and-morty-playground",
     "private": true,
     "dependencies": {
+        "@fortawesome/fontawesome-svg-core": "^6.1.2",
+        "@fortawesome/free-solid-svg-icons": "^6.1.2",
+        "@fortawesome/react-fontawesome": "^0.2.0",
         "@tanstack/react-query": "^4.0.10",
         "@tanstack/react-virtual": "^3.0.0-beta.17",
         "react": "^18.2.0",

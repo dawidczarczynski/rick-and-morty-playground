@@ -1,11 +1,11 @@
-import { useMemo } from 'react';
-import { useInfiniteQuery } from '@tanstack/react-query';
-import { Character } from 'characters/model/character';
+import { useState } from 'react';
 import {
     extractTotalCount,
-    makeRequest,
     mergeResponseResults,
 } from 'shared/api';
+import { Character } from 'characters/model/character';
+import { CharactersParams } from 'characters/model/characterParams';
+import { useAllCharactersRequest } from 'characters/hooks/useAllCharactersRequest';
 
 export interface UseCharactersResult {
     isLoading: boolean;
@@ -13,43 +13,21 @@ export interface UseCharactersResult {
     characters: Character[];
     fetchNextPage: () => void;
     hasNextPage: boolean;
-    error?: string;
+    error: string | null;
+    updateParams: (params: CharactersParams) => void;
 }
 
-const CHARACTERS_RESOURCE_NAME = 'character';
-const CHARACTERS_RESOURCE_URI = 'https://rickandmortyapi.com/api/character';
-
 export function useCharacters(): UseCharactersResult {
-    const {
-        isLoading,
-        error,
-        data,
-        hasNextPage = false,
-        fetchNextPage,
-    } = useInfiniteQuery(
-        [CHARACTERS_RESOURCE_NAME],
-        ({ pageParam }) =>
-            makeRequest<Character[]>(pageParam || CHARACTERS_RESOURCE_URI),
-        {
-            getNextPageParam: lastPage => lastPage.info.next,
-        }
-    );
-
-    // TODO: Check if memo needed
-    const { characters, totalCount } = useMemo(
-        () => ({
-            characters: mergeResponseResults<Character>(data?.pages),
-            totalCount: extractTotalCount<Character[]>(data?.pages),
-        }),
-        [data]
-    );
+    const [ params, updateParams ] = useState<CharactersParams>({});
+    const { isLoading, data, error, hasNextPage = false, fetchNextPage } = useAllCharactersRequest(params);
 
     return {
         isLoading,
-        characters,
-        totalCount,
+        characters: mergeResponseResults<Character>(data?.pages),
+        totalCount: extractTotalCount<Character[]>(data?.pages),
         fetchNextPage,
-        error: error as string,
+        error,
         hasNextPage,
+        updateParams
     };
 }
