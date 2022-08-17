@@ -1,0 +1,11 @@
+.preloadercontainer {
+    width: 98%;
+    height: 100%;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.preloadermessage {
+    padding-right: var(--spacing-5)
+}

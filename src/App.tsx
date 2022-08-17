@@ -1,6 +1,6 @@
-import React from 'react';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { Layout } from 'layout/components/Layout';
+import { LoadingProvider } from 'shared/providers/LoadingProvider';
 import { CharactersPage } from 'characters/page/CharactersPage';
 
 const queryClient = new QueryClient({
@@ -13,10 +13,12 @@ const queryClient = new QueryClient({
 
 export function App() {
     return (
-        <Layout>
+        <LoadingProvider>
             <QueryClientProvider client={queryClient}>
-                <CharactersPage />
+                <Layout>
+                    <CharactersPage />
+                </Layout>
             </QueryClientProvider>
-        </Layout>
+        </LoadingProvider>
     );
 }

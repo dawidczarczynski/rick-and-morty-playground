@@ -6,7 +6,6 @@ import { Sidebar } from 'layout/components/Sidebar';
 
 export function CharactersPage() {
     const {
-        isLoading,
         error,
         characters,
         totalCount,
@@ -21,7 +20,6 @@ export function CharactersPage() {
                 <CharacterSearch onSearch={updateParams} />
             </Sidebar>
             <Content>
-                {isLoading && <p data-testid="loading">Loading...</p>}
                 {error && <p data-testid="error">Error: {error}</p>}
                 {!characters?.length && (
                     <p data-testid="empty">Nothing to display</p>

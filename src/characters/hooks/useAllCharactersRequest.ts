@@ -1,7 +1,9 @@
+import { useEffect } from 'react';
 import { QueryFunctionContext, useInfiniteQuery } from '@tanstack/react-query';
 import { Character } from 'characters/model/character';
 import { CharactersParams } from 'characters/model/characterParams';
 import { ApiResponse, ApiRequestParams, makeRequest } from 'shared/api';
+import { useLoading } from 'shared/hooks/useLoading';
 
 const CHARACTERS_RESOURCE_NAME = 'character';
 const CHARACTERS_RESOURCE_URI = 'https://rickandmortyapi.com/api/character';
@@ -27,7 +29,7 @@ function fetchCharacters({
 }
 
 export function useAllCharactersRequest(params: CharactersParams) {
-    return useInfiniteQuery<
+    const query = useInfiniteQuery<
         ApiResponse<Character[]>,
         string,
         ApiResponse<Character[]>,
@@ -35,4 +37,13 @@ export function useAllCharactersRequest(params: CharactersParams) {
     >([CHARACTERS_RESOURCE_NAME, params], fetchCharacters, {
         getNextPageParam: lastPage => lastPage.info.next, //eg. https://rickandmortyapi.com/api/character?page=2&name=rick
     });
+
+    // Handle global loader for both loading and fetching more statuses
+    const { updateLoading, updateMessage } = useLoading();
+    useEffect(() => { 
+        updateLoading(query.isLoading || query.isFetching);
+        updateMessage('Loading characters');
+    }, [ query.isLoading, query.isFetching ]);
+
+    return query;
 }
