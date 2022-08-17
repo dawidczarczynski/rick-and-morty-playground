@@ -1,12 +1,12 @@
-import { LoadingContext } from "shared/providers/LoadingProvider";
-import { useContext } from "react";
+import { LoadingContext } from 'shared/providers/LoadingProvider';
+import { useContext } from 'react';
 
 export function useLoading() {
-   const context = useContext(LoadingContext);
+    const context = useContext(LoadingContext);
 
-   if (!context) {
+    if (!context) {
         throw new Error('useLoading must be used within LoadingProvider!');
-   }
+    }
 
-   return context;
+    return context;
 }

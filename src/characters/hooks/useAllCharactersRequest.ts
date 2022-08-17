@@ -40,10 +40,10 @@ export function useAllCharactersRequest(params: CharactersParams) {
 
     // Handle global loader for both loading and fetching more statuses
     const { updateLoading, updateMessage } = useLoading();
-    useEffect(() => { 
+    useEffect(() => {
         updateLoading(query.isLoading || query.isFetching);
         updateMessage('Loading characters');
-    }, [ query.isLoading, query.isFetching ]);
+    }, [query.isLoading, query.isFetching, updateLoading, updateMessage]);
 
     return query;
 }

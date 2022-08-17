@@ -10,9 +10,7 @@ export function Layout({ children }: PropsWithChildren) {
 
     return (
         <div className={styles.mainwrapper}>
-            <Messages>
-                {loading && <Preloader message={message} />}
-            </Messages>
+            <Messages>{loading && <Preloader message={message} />}</Messages>
             {children}
         </div>
     );

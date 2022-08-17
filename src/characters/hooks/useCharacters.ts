@@ -21,9 +21,8 @@ export function useCharacters(): UseCharactersResult {
         data,
         error,
         hasNextPage = false,
-        fetchNextPage
+        fetchNextPage,
     } = useAllCharactersRequest(params);
-
 
     return {
         characters: mergeResponseResults<Character>(data?.pages),

@@ -1,4 +1,4 @@
-import { Children, PropsWithChildren } from "react";
+import { PropsWithChildren } from 'react';
 import styles from './messages.module.css';
 
 export function Messages({ children }: PropsWithChildren) {
