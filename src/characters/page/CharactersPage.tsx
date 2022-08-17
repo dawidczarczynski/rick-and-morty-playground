@@ -1,8 +1,8 @@
-import { CharacterSearch } from "characters/components/CharacterSearch";
-import { CharactersGrid } from "characters/components/CharactersGrid";
-import { useCharacters } from "characters/hooks/useCharacters";
-import { Content } from "layout/components/Content";
-import { Sidebar } from "layout/components/Sidebar";
+import { CharacterSearch } from 'characters/components/CharacterSearch';
+import { CharactersGrid } from 'characters/components/CharactersGrid';
+import { useCharacters } from 'characters/hooks/useCharacters';
+import { Content } from 'layout/components/Content';
+import { Sidebar } from 'layout/components/Sidebar';
 
 export function CharactersPage() {
     const {
@@ -12,7 +12,7 @@ export function CharactersPage() {
         totalCount,
         hasNextPage,
         fetchNextPage,
-        updateParams
+        updateParams,
     } = useCharacters();
 
     return (
@@ -23,7 +23,9 @@ export function CharactersPage() {
             <Content>
                 {isLoading && <p data-testid="loading">Loading...</p>}
                 {error && <p data-testid="error">Error: {error}</p>}
-                {!characters?.length && <p data-testid="empty">Nothing to display</p>}
+                {!characters?.length && (
+                    <p data-testid="empty">Nothing to display</p>
+                )}
                 <CharactersGrid
                     data-testid="characters-list"
                     items={characters}
@@ -32,6 +34,5 @@ export function CharactersPage() {
                 />
             </Content>
         </>
-       
     );
 }
