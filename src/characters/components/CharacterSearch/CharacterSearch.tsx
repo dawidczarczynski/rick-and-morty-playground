@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useState } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faXmark } from '@fortawesome/free-solid-svg-icons'
 
@@ -13,11 +13,11 @@ interface CharacterSearchProps {
 export function CharacterSearch({ onSearch }: CharacterSearchProps) {
     const [ searchPhrase, setSearchPhrase ] = useState('');
     const [ searchAttribute, setSearchAttribute ] = useState('name');
-    const searchCallback = useCallback(debounce(onSearch), []);
+    const searchCallback = useMemo(() => debounce(onSearch), [ onSearch ]);
 
     useEffect(() => { 
        searchPhrase && searchCallback({ [searchAttribute]: searchPhrase });
-    }, [ searchPhrase, searchAttribute ])
+    }, [ searchPhrase, searchAttribute, searchCallback ])
 
     const handleSearchChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         setSearchPhrase(event.target.value);

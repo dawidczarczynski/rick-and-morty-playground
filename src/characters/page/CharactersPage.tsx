@@ -18,7 +18,7 @@ export function CharactersPage() {
     return (
         <>
             <Sidebar>
-                <CharacterSearch onSearch={params => updateParams(params)} />
+                <CharacterSearch onSearch={updateParams} />
             </Sidebar>
             <Content>
                 {isLoading && <p data-testid="loading">Loading...</p>}
