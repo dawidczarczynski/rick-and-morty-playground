@@ -1,4 +1,4 @@
-import { LoadingContext } from 'shared/providers/LoadingProvider';
+import { LoadingContext } from 'core/providers/LoadingProvider';
 import { useContext } from 'react';
 
 export function useLoading() {

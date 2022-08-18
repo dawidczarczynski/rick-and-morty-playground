@@ -1,15 +1,19 @@
 import ClipLoader from 'react-spinners/MoonLoader';
+import { Message } from 'shared/components/Message';
+import { useLoading } from 'shared/hooks/useLoading';
+
 import styles from './preloader.module.css';
 
-interface PreloaderProps {
-    message?: string;
-}
+const getPreloaderClass = (loading: boolean) => loading ? styles.preloadercontainer : styles.preloaderhidden;
 
-export function Preloader({ message = 'Loading' }: PreloaderProps) {
+export function Preloader() {
+    const { loading } = useLoading();
+
     return (
-        <div data-testid="loading" className={styles.preloadercontainer}>
-            <p className={styles.preloadermessage}>{message}</p>
-            <ClipLoader loading={true} size={30} />
+        <div data-testid="loading" className={getPreloaderClass(loading)}>
+            <Message severity='info'>
+                <ClipLoader loading={true} size={20} />
+            </Message>
         </div>
     );
 }

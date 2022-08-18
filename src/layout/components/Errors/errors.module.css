@@ -1,0 +1,14 @@
+.errors {
+    position: fixed;
+    left: var(--toast-spacing);
+    bottom: calc(var(--toast-height) + 2 * var(--toast-spacing));
+    width: var(--toast-width);
+    height: var(--toast-height);
+    transition: bottom 0.7s ease-in;
+    color: #fff;
+}
+
+.noerrors {
+    composes: errors;
+    bottom: calc(-1 * (var(--toast-height) + 2 * var(--toast-spacing)));
+}

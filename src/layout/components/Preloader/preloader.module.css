@@ -1,11 +1,21 @@
 .preloadercontainer {
-    width: 98%;
-    height: 100%;
-    display: flex;
-    justify-content: flex-end;
-    align-items: center;
+    position: fixed;
+    left: var(--toast-spacing);
+    bottom: var(--toast-spacing);
+    width: var(--toast-width);
+    height: var(--toast-height);
+    transition: bottom 0.2s ease-in;
 }
 
-.preloadermessage {
-    padding-right: var(--spacing-5);
+.preloaderhidden {
+    composes: preloadercontainer;
+    bottom: calc(-1 * (var(--toast-height) + var(--toast-spacing)));
 }
+
+
+.preloadermessage {
+    padding-right: var(--spacing-2);
+}
+
+
+

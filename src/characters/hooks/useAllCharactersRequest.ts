@@ -4,6 +4,7 @@ import { Character } from 'characters/model/character';
 import { CharactersParams } from 'characters/model/characterParams';
 import { ApiResponse, ApiRequestParams, makeRequest } from 'shared/api';
 import { useLoading } from 'shared/hooks/useLoading';
+import { useError } from 'shared/hooks/useError';
 
 const CHARACTERS_RESOURCE_NAME = 'character';
 const CHARACTERS_RESOURCE_URI = 'https://rickandmortyapi.com/api/character';
@@ -31,7 +32,7 @@ function fetchCharacters({
 export function useAllCharactersRequest(params: CharactersParams) {
     const query = useInfiniteQuery<
         ApiResponse<Character[]>,
-        string,
+        Error,
         ApiResponse<Character[]>,
         [string, CharactersParams]
     >([CHARACTERS_RESOURCE_NAME, params], fetchCharacters, {
@@ -39,11 +40,18 @@ export function useAllCharactersRequest(params: CharactersParams) {
     });
 
     // Handle global loader for both loading and fetching more statuses
-    const { updateLoading, updateMessage } = useLoading();
+    const { updateLoading } = useLoading();
     useEffect(() => {
         updateLoading(query.isLoading || query.isFetching);
-        updateMessage('Loading characters');
-    }, [query.isLoading, query.isFetching, updateLoading, updateMessage]);
+    }, [query.isLoading, query.isFetching, updateLoading]);
+
+    // Handle global error message
+    const { setError } = useError();
+    useEffect(() => {
+        if (query.error) {
+            setError('Failed to fetch characters list!');
+        }
+    }, [query.error, setError])
 
     return query;
 }

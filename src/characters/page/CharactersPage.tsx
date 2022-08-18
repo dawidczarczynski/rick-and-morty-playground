@@ -6,30 +6,27 @@ import { Sidebar } from 'layout/components/Sidebar';
 
 export function CharactersPage() {
     const {
-        error,
         characters,
         totalCount,
         hasNextPage,
         fetchNextPage,
         updateParams,
     } = useCharacters();
-
     return (
         <>
             <Sidebar>
                 <CharacterSearch onSearch={updateParams} />
             </Sidebar>
             <Content>
-                {error && <p data-testid="error">Error: {error}</p>}
                 {!characters?.length && (
                     <p data-testid="empty">Nothing to display</p>
                 )}
-                <CharactersGrid
+                {characters && <CharactersGrid
                     data-testid="characters-list"
                     items={characters}
                     size={totalCount}
                     onListEnd={() => hasNextPage && fetchNextPage()}
-                />
+                />}
             </Content>
         </>
     );

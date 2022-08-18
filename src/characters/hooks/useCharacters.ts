@@ -10,7 +10,6 @@ export interface UseCharactersResult {
     characters: Character[];
     fetchNextPage: () => void;
     hasNextPage: boolean;
-    error: string | null;
     updateParams: (params: CharactersParams) => void;
 }
 
@@ -19,7 +18,6 @@ export function useCharacters(): UseCharactersResult {
 
     const {
         data,
-        error,
         hasNextPage = false,
         fetchNextPage,
     } = useAllCharactersRequest(params);
@@ -28,7 +26,6 @@ export function useCharacters(): UseCharactersResult {
         characters: mergeResponseResults<Character>(data?.pages),
         totalCount: extractTotalCount<Character[]>(data?.pages),
         fetchNextPage,
-        error,
         hasNextPage,
         updateParams,
     };

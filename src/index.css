@@ -55,8 +55,12 @@
     --color-heading: #1a202c;
     --color-heading-black: black;
     --color-accent: #d1dce5;
+    --color-error: #ed4337;
     --sidebar-width: var(--maxWidth-sm);
     --main-width: calc(var(--maxWidth-full) - var(--sidebar-width));
+    --toast-width: 300px;
+    --toast-height: 50px;
+    --toast-spacing: 10px;
 }
 
 body {

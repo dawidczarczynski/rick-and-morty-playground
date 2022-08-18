@@ -7,5 +7,10 @@ export async function makeRequest<T>(
 ): Promise<ApiResponse<T>> {
     const paramsString = params ? getParamsString(params) : '';
     const fetchResponse = await fetch(`${url}${paramsString}`);
+
+    if (!fetchResponse.ok) {
+        throw new Error('HTTP request failed!');
+    }
+
     return await fetchResponse.json();
 }
