@@ -12,10 +12,6 @@
     bottom: calc(-1 * (var(--toast-height) + var(--toast-spacing)));
 }
 
-
 .preloadermessage {
     padding-right: var(--spacing-2);
 }
-
-
-

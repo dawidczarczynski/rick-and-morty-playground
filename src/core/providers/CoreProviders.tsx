@@ -1,10 +1,10 @@
-import { PropsWithChildren } from "react";
-import { QueryClientProvider } from "@tanstack/react-query";
-import { ErrorProvider, LoadingProvider } from "core/providers";
-import { queryClient } from "core/queryClient";
+import { PropsWithChildren } from 'react';
+import { QueryClientProvider } from '@tanstack/react-query';
+import { ErrorProvider, LoadingProvider } from 'core/providers';
+import { queryClient } from 'core/queryClient';
 
 export function CoreProviders({ children }: PropsWithChildren) {
-     return (
+    return (
         <LoadingProvider>
             <ErrorProvider>
                 <QueryClientProvider client={queryClient}>
@@ -12,5 +12,5 @@ export function CoreProviders({ children }: PropsWithChildren) {
                 </QueryClientProvider>
             </ErrorProvider>
         </LoadingProvider>
-     );
+    );
 }

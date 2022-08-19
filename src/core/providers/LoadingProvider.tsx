@@ -14,9 +14,7 @@ export function LoadingProvider({ children }: PropsWithChildren) {
         loading ? setLoading(true) : setTimeout(() => setLoading(false), 1000);
 
     return (
-        <LoadingContext.Provider
-            value={{ loading, updateLoading }}
-        >
+        <LoadingContext.Provider value={{ loading, updateLoading }}>
             {children}
         </LoadingContext.Provider>
     );

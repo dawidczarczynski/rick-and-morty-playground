@@ -1,32 +1,49 @@
 import { CharacterSearch } from 'characters/components/CharacterSearch';
 import { CharactersGrid } from 'characters/components/CharactersGrid';
+import { NoCharacters } from 'characters/components/NoCharacters';
 import { useCharacters } from 'characters/hooks/useCharacters';
+import { useCharacterParams } from 'characters/hooks/useCharacterParams';
 import { Content } from 'layout/components/Content';
 import { Sidebar } from 'layout/components/Sidebar';
+import { useCharacterSearch } from 'characters/hooks/useCharacterSearch';
 
 export function CharactersPage() {
-    const {
-        characters,
-        totalCount,
-        hasNextPage,
-        fetchNextPage,
-        updateParams,
-    } = useCharacters();
+    const { params, updateParams, clearParams } = useCharacterParams();
+
+    const { phrase, setPhrase, attribute, setAttribute, clearSearch } =
+        useCharacterSearch({ onSearch: updateParams });
+
+    const { characters, totalCount, fetchNextPage, loading } =
+        useCharacters(params);
+
+    const clearSearchCriteria = () => {
+        clearSearch();
+        clearParams();
+    };
+
     return (
         <>
             <Sidebar>
-                <CharacterSearch onSearch={updateParams} />
+                <CharacterSearch
+                    phrase={phrase}
+                    attribute={attribute}
+                    onPhraseChange={setPhrase}
+                    onAttributeChange={setAttribute}
+                    onClear={clearSearch}
+                />
             </Sidebar>
             <Content>
-                {!characters?.length && (
-                    <p data-testid="empty">Nothing to display</p>
+                {!loading && !characters?.length && (
+                    <NoCharacters clearSearchCriteria={clearSearchCriteria} />
                 )}
-                {characters && <CharactersGrid
-                    data-testid="characters-list"
-                    items={characters}
-                    size={totalCount}
-                    onListEnd={() => hasNextPage && fetchNextPage()}
-                />}
+                {characters && (
+                    <CharactersGrid
+                        data-testid="characters-list"
+                        items={characters}
+                        size={totalCount}
+                        onListEnd={fetchNextPage}
+                    />
+                )}
             </Content>
         </>
     );

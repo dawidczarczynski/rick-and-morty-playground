@@ -51,7 +51,7 @@ export function useAllCharactersRequest(params: CharactersParams) {
         if (query.error) {
             setError('Failed to fetch characters list!');
         }
-    }, [query.error, setError])
+    }, [query.error, setError]);
 
     return query;
 }

@@ -3,7 +3,8 @@ import { Message } from 'shared/components/Message';
 import { useError } from 'shared/hooks/useError';
 import styles from './errors.module.css';
 
-const getContainerClass = (error: string | null) => error ? styles.errors : styles.noerrors;
+const getContainerClass = (error: string | null) =>
+    error ? styles.errors : styles.noerrors;
 
 export function Errors() {
     const { error, clearError } = useError();
@@ -15,7 +16,7 @@ export function Errors() {
 
     return (
         <div className={getContainerClass(error)}>
-            <Message severity='error'>{error}</Message>
+            <Message severity="error">{error}</Message>
         </div>
     );
 }

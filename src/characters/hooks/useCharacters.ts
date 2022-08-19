@@ -1,5 +1,3 @@
-import { useState } from 'react';
-
 import { extractTotalCount, mergeResponseResults } from 'shared/api';
 import { Character } from 'characters/model/character';
 import { CharactersParams } from 'characters/model/characterParams';
@@ -9,24 +7,22 @@ export interface UseCharactersResult {
     totalCount: number;
     characters: Character[];
     fetchNextPage: () => void;
-    hasNextPage: boolean;
-    updateParams: (params: CharactersParams) => void;
+    loading: boolean;
 }
 
-export function useCharacters(): UseCharactersResult {
-    const [params, updateParams] = useState<CharactersParams>({});
-
+export function useCharacters(params: CharactersParams): UseCharactersResult {
     const {
         data,
         hasNextPage = false,
         fetchNextPage,
+        isLoading,
+        isFetching,
     } = useAllCharactersRequest(params);
 
     return {
         characters: mergeResponseResults<Character>(data?.pages),
         totalCount: extractTotalCount<Character[]>(data?.pages),
-        fetchNextPage,
-        hasNextPage,
-        updateParams,
+        loading: isLoading || isFetching,
+        fetchNextPage: () => hasNextPage && fetchNextPage(),
     };
 }

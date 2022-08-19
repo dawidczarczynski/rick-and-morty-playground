@@ -11,23 +11,24 @@ interface CharacterSearchParams {
 }
 
 export function useCharacterSearch({ onSearch }: CharacterSearchParams) {
-    const [searchPhrase, setSearchPhrase] = useState('');
-    const [searchAttribute, setSearchAttribute] =
+    const [phrase, setPhrase] = useState('');
+    const [attribute, setAttribute] =
         useState<CharacterSearchAttribute>('name');
+
     const memoizedCallback = useMemo(() => debounce(onSearch), [onSearch]);
 
     useEffect(() => {
-        searchPhrase && memoizedCallback({ [searchAttribute]: searchPhrase });
-    }, [searchPhrase, searchAttribute, memoizedCallback]);
+        phrase && memoizedCallback({ [attribute]: phrase });
+    }, [phrase, attribute, memoizedCallback]);
 
     return {
-        searchPhrase,
-        setSearchPhrase,
-        searchAttribute,
-        setSearchAttribute,
-        clear: () => {
-            setSearchPhrase('');
-            setSearchAttribute('name');
+        phrase,
+        setPhrase,
+        attribute,
+        setAttribute,
+        clearSearch: () => {
+            setPhrase('');
+            setAttribute('name');
             onSearch({});
         },
     };
