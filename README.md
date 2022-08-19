@@ -1,7 +1,11 @@
 # Rick and Morty React Playground
 
+[![Build](https://github.com/dawidczarczynski/rick-and-morty-playground/actions/workflows/deployment.yaml/badge.svg)](https://github.com/dawidczarczynski/rick-and-morty-playground/actions/workflows/deployment.yaml)
+
 Example React application created for training and educational purposes.
 It utilises open [Rick and Morty API](https://rickandmortyapi.com/documentation).
+
+Live demo is available [here](https://dawidczarczynski.github.io/rick-and-morty-playground/).
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
