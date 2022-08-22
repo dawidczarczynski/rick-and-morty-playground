@@ -6,7 +6,10 @@ interface CharacterDetailsProps {
 }
 
 export function CharacterDetails({ character }: CharacterDetailsProps) {
-    const locations = [character.origin?.name, character.location?.name];
+    const locations = [
+        { id: `${character.id}-origin-name`, name: character.origin?.name },
+        { id: `${character.id}-location=name`, name: character.location?.name },
+    ];
 
     return (
         <>
@@ -15,10 +18,10 @@ export function CharacterDetails({ character }: CharacterDetailsProps) {
                 <span className={styles.metaitem}>{character.gender}</span>
             </p>
             <div className={styles.locations}>
-                {locations.map(location => (
-                    <div key={location} className={styles.location}>
-                        <p title={location} className={styles.locationtext}>
-                            {location}
+                {locations.map(({ id, name }) => (
+                    <div key={id} className={styles.location}>
+                        <p title={name} className={styles.locationtext}>
+                            {name}
                         </p>
                     </div>
                 ))}
