@@ -2,27 +2,27 @@
     display: flex;
     flex-direction: column;
     width: 100%;
-    background-color: #e1e1e1;
+    background-color: #dcdcdc;
     border-radius: 15px;
-}
-
-.cardimage {
-    width: 100%;
-    height: 350px;
-    background-size: cover;
-    background-position: center;
+    overflow: hidden;
 }
 
 .header {
-    padding: var(--spacing-0) var(--spacing-5);
-    display: flex;
-    justify-content: space-between;
-}
-
-.footer {
-    padding: var(--spacing-5);
+    padding: var(--spacing-2) var(--spacing-5);
+    color: var(--color-text);
+    border-bottom: 3px solid var(--color-primary);
 }
 
 .name {
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
     font-weight: var(--fontWeight-medium);
+    padding-right: var(--spacing-10);
+    margin: 0;
+}
+
+.name:before {
+    content: '•';
+    padding-right: var(--spacing-2);
 }

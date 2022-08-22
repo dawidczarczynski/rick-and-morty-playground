@@ -50,12 +50,13 @@
     --fontSize-5: 2.074rem;
     --fontSize-6: 2.488rem;
     --fontSize-7: 2.986rem;
-    --color-primary: #005b99;
-    --color-text: #2e353f;
+    --color-primary: #18c0d9;
+    --color-text: #3a3737;
     --color-text-light: #4f5969;
     --color-heading: #1a202c;
     --color-heading-black: black;
     --color-accent: #d1dce5;
+    --color-positive: #34d48b;
     --color-error: #ed4337;
     --sidebar-width: var(--maxWidth-sm);
     --main-width: calc(var(--maxWidth-full) - var(--sidebar-width));

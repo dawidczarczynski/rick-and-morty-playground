@@ -23,10 +23,12 @@ export function CharactersGrid({
             <InfiniteScroll lastItemHandler={onListEnd}>
                 {items.map(character => (
                     <VirtualScrollChild key={character.id} height={470}>
-                        <CharacterCard
-                            data-testid="character"
-                            character={character}
-                        />
+                        <div className={styles.griditem}>
+                            <CharacterCard
+                                data-testid="character"
+                                character={character}
+                            />
+                        </div>
                     </VirtualScrollChild>
                 ))}
             </InfiniteScroll>

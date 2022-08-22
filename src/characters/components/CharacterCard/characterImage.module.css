@@ -1,0 +1,13 @@
+.cardimage {
+    width: 100%;
+    height: 350px;
+    background-size: cover;
+    background-position: center;
+    position: relative;
+}
+
+.cardimagechildren {
+    position: absolute;
+    top: -25px;
+    right: 15px;
+}

@@ -4,24 +4,27 @@
 }
 
 .statusIndicator {
-    height: 15px;
-    width: 15px;
+    height: 45px;
+    width: 45px;
     display: block;
     margin-right: var(--spacing-1);
     border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .statusIndicatorAlive {
     composes: statusIndicator;
-    background-color: greenyellow;
+    background-color: var(--color-positive);
 }
 
 .statusIndicatorDead {
     composes: statusIndicator;
-    background-color: red;
+    background-color: var(--color-text);
 }
 
 .statusIndicatorUnknown {
     composes: statusIndicator;
-    background-color: darkslategray;
+    background-color: var(--color-text-light);
 }

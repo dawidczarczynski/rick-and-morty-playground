@@ -1,24 +1,44 @@
-import React from 'react';
+import {
+    faHeartPulse,
+    faSkull,
+    faQuestion,
+} from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import styles from './charaterStatus.module.css';
 
 interface CharacterStatusProps {
     status: 'Alive' | 'Dead' | 'unknown';
 }
 
-const getIndicatorStyle = (status: 'Alive' | 'Dead' | 'unknown') => {
-    if (status === 'Alive') return styles.statusIndicatorAlive;
-    if (status === 'Dead') return styles.statusIndicatorDead;
+const getIndicatorDetails = (status: 'Alive' | 'Dead' | 'unknown') => {
+    if (status === 'Alive')
+        return {
+            css: styles.statusIndicatorAlive,
+            icon: faHeartPulse,
+        };
 
-    return styles.statusIndicatorUnknown;
+    if (status === 'Dead')
+        return {
+            css: styles.statusIndicatorDead,
+            icon: faSkull,
+        };
+
+    return {
+        css: styles.statusIndicatorUnknown,
+        icon: faQuestion,
+    };
 };
 
 export function CharacterStatus({ status }: CharacterStatusProps) {
-    const indicatorStyle = getIndicatorStyle(status);
+    const statusIndicator = getIndicatorDetails(status);
 
     return (
-        <p className={styles.status}>
-            <span className={indicatorStyle}></span>
-            {status}
-        </p>
+        <div className={statusIndicator.css} title={status}>
+            <FontAwesomeIcon
+                icon={statusIndicator.icon}
+                size="2x"
+                color="white"
+            />
+        </div>
     );
 }

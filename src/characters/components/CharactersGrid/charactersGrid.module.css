@@ -4,3 +4,7 @@
     grid-column-gap: var(--spacing-3);
     grid-row-gap: var(--spacing-3);
 }
+
+.griditem {
+    max-width: 300px;
+}
