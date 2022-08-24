@@ -1,4 +1,8 @@
 .maincontent {
-    padding-left: var(--sidebar-width);
+    background-color: var(--color-text-light);
+    padding: var(--spacing-4);
+    margin-left: calc(var(--sidebar-width) + var(--spacing-5));
     width: var(--main-width);
+    min-height: 100vh;
+    box-sizing: border-box;
 }

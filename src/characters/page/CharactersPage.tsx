@@ -1,36 +1,34 @@
-import { CharacterSearch } from 'characters/components/CharacterSearch';
 import { CharactersGrid } from 'characters/components/CharactersGrid';
 import { NoCharacters } from 'characters/components/NoCharacters';
+import { CharacterFilters } from 'characters/components/CharacterFilters';
 import { useCharacters } from 'characters/hooks/useCharacters';
+import { useCharacterFilters } from 'characters/hooks/useCharacterFilters';
 import { useCharacterParams } from 'characters/hooks/useCharacterParams';
 import { Content } from 'layout/components/Content';
 import { Sidebar } from 'layout/components/Sidebar';
-import { useCharacterSearch } from 'characters/hooks/useCharacterSearch';
+
+import styles from './charactersPage.module.css';
 
 export function CharactersPage() {
     const { params, updateParams, clearParams } = useCharacterParams();
-
-    const { phrase, setPhrase, attribute, setAttribute, clearSearch } =
-        useCharacterSearch({ onSearch: updateParams });
+    const { form, clearFilters } = useCharacterFilters({
+        onChange: updateParams,
+    });
 
     const { characters, totalCount, fetchNextPage, loading } =
         useCharacters(params);
 
     const clearSearchCriteria = () => {
-        clearSearch();
+        clearFilters();
         clearParams();
     };
 
     return (
         <>
             <Sidebar>
-                <CharacterSearch
-                    phrase={phrase}
-                    attribute={attribute}
-                    onPhraseChange={setPhrase}
-                    onAttributeChange={setAttribute}
-                    onClear={clearSearch}
-                />
+                <div className={styles.filterscontainer}>
+                    <CharacterFilters {...form} clearFilters={clearFilters} />
+                </div>
             </Sidebar>
             <Content>
                 {!loading && !characters?.length && (

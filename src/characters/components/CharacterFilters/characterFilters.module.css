@@ -1,0 +1,33 @@
+.sectionname {
+    padding: var(--spacing-2) var(--spacing-4);
+    font-size: var(--fontSize-0);
+    border-bottom: 1px solid var(--color-accent);
+}
+
+.searchinput {
+    padding: var(--spacing-2);
+    width: 100%;
+    border: 1px solid var(--color-accent);
+    box-sizing: border-box;
+    margin-bottom: var(--spacing-2);
+}
+
+.searchinput:focus-visible {
+    outline: 0;
+}
+
+.searchlabel {
+    font-size: var(--fontSize-0);
+    padding-bottom: var(--spacing-1);
+    padding-left: var(--spacing-3);
+}
+
+.filtercontrol input {
+    margin-right: var(--spacing-3);
+}
+
+.filteractions {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: var(--spacing-3);
+}

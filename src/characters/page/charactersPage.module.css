@@ -1,0 +1,5 @@
+.filterscontainer {
+    padding: var(--spacing-4);
+    display: flex;
+    flex-direction: column;
+}
