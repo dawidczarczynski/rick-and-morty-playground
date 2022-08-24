@@ -10,18 +10,13 @@ import { Sidebar } from 'layout/components/Sidebar';
 import styles from './charactersPage.module.css';
 
 export function CharactersPage() {
-    const { params, updateParams, clearParams } = useCharacterParams();
+    const { params, updateParams } = useCharacterParams();
     const { form, clearFilters } = useCharacterFilters({
         onChange: updateParams,
     });
 
     const { characters, totalCount, fetchNextPage, loading } =
         useCharacters(params);
-
-    const clearSearchCriteria = () => {
-        clearFilters();
-        clearParams();
-    };
 
     return (
         <>
@@ -32,7 +27,7 @@ export function CharactersPage() {
             </Sidebar>
             <Content>
                 {!loading && !characters?.length && (
-                    <NoCharacters clearSearchCriteria={clearSearchCriteria} />
+                    <NoCharacters clearFilters={clearFilters} />
                 )}
                 {characters && (
                     <CharactersGrid

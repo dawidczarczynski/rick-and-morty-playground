@@ -7,8 +7,15 @@ interface CharacterSearchParams {
     onChange: (params: CharactersParams) => void;
 }
 
+const defaultValues: CharacterFiltersValue = {
+    phrase: '',
+    attribute: 'name',
+    status: null,
+    gender: null,
+};
+
 export function useCharacterFilters({ onChange }: CharacterSearchParams) {
-    const form = useForm<CharacterFiltersValue>();
+    const form = useForm<CharacterFiltersValue>({ defaultValues });
     const callback = useDebounce({ callback: onChange });
     const params = getCharacterParamsFromFilters(form.watch());
 
@@ -17,7 +24,7 @@ export function useCharacterFilters({ onChange }: CharacterSearchParams) {
     return {
         form,
         clearFilters: () => {
-            form.reset({});
+            form.reset(defaultValues);
             onChange({});
         },
     };

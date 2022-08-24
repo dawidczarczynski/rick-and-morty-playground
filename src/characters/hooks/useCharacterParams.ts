@@ -7,6 +7,5 @@ export function useCharacterParams() {
     return {
         params,
         updateParams,
-        clearParams: () => updateParams({}),
     };
 }

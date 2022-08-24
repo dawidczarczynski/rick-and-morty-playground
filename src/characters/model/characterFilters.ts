@@ -7,6 +7,6 @@ import {
 export interface CharacterFiltersValue {
     phrase: string;
     attribute: CharacterSearchAttribute;
-    status: CharacterStatus;
-    gender: CharacterGender;
+    status: CharacterStatus | null;
+    gender: CharacterGender | null;
 }
