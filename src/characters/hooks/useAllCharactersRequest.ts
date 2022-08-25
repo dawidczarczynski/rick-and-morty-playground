@@ -1,10 +1,7 @@
-import { useEffect } from 'react';
 import { QueryFunctionContext, useInfiniteQuery } from '@tanstack/react-query';
 import { Character } from 'characters/model/character';
 import { CharactersParams } from 'characters/model/characterParams';
 import { ApiResponse, ApiRequestParams, makeRequest } from 'shared/api';
-import { useLoading } from 'shared/hooks/useLoading';
-import { useError } from 'shared/hooks/useError';
 
 const CHARACTERS_RESOURCE_NAME = 'character';
 const CHARACTERS_RESOURCE_URI = 'https://rickandmortyapi.com/api/character';
@@ -30,7 +27,7 @@ function fetchCharacters({
 }
 
 export function useAllCharactersRequest(params: CharactersParams) {
-    const query = useInfiniteQuery<
+    return useInfiniteQuery<
         ApiResponse<Character[]>,
         Error,
         ApiResponse<Character[]>,
@@ -38,20 +35,4 @@ export function useAllCharactersRequest(params: CharactersParams) {
     >([CHARACTERS_RESOURCE_NAME, params], fetchCharacters, {
         getNextPageParam: lastPage => lastPage.info.next, //eg. https://rickandmortyapi.com/api/character?page=2&name=rick
     });
-
-    // Handle global loader for both loading and fetching more statuses
-    const { updateLoading } = useLoading();
-    useEffect(() => {
-        updateLoading(query.isLoading || query.isFetching);
-    }, [query.isLoading, query.isFetching, updateLoading]);
-
-    // Handle global error message
-    const { setError } = useError();
-    useEffect(() => {
-        if (query.error) {
-            setError('Failed to fetch characters list!');
-        }
-    }, [query.error, setError]);
-
-    return query;
 }

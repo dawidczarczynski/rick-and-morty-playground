@@ -1,11 +1,5 @@
 import { useForm } from 'react-hook-form';
-import { CharacterFiltersValue, CharactersParams } from 'characters/model';
-import { useDebounce } from 'shared/hooks/useDebounce';
-import { getCharacterParamsFromFilters } from 'characters/functions/getCharacterParamsFromFilters';
-
-interface CharacterSearchParams {
-    onChange: (params: CharactersParams) => void;
-}
+import { CharacterFiltersValue } from 'characters/model';
 
 const defaultValues: CharacterFiltersValue = {
     phrase: '',
@@ -14,18 +8,12 @@ const defaultValues: CharacterFiltersValue = {
     gender: null,
 };
 
-export function useCharacterFilters({ onChange }: CharacterSearchParams) {
-    const form = useForm<CharacterFiltersValue>({ defaultValues });
-    const callback = useDebounce({ callback: onChange });
-    const params = getCharacterParamsFromFilters(form.watch());
-
-    callback(params);
-
+export function useCharacterFiltersForm() {
+    const filtersForm = useForm<CharacterFiltersValue>({ defaultValues });
     return {
-        form,
-        clearFilters: () => {
-            form.reset(defaultValues);
-            onChange({});
+        filtersForm,
+        clearFiltersForm: () => {
+            filtersForm.reset(defaultValues);
         },
     };
 }

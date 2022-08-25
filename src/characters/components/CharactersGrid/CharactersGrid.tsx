@@ -1,5 +1,3 @@
-import React from 'react';
-
 import { VirtualScrollChild } from 'shared/components/VirtualScrollChild';
 import { InfiniteScroll } from 'shared/components/InifiniteScroll';
 import { Character } from 'characters/model/character';
@@ -9,15 +7,10 @@ import styles from './charactersGrid.module.css';
 
 interface CharactersGridProps {
     items: Character[];
-    size: number;
     onListEnd: () => void;
 }
 
-export function CharactersGrid({
-    items,
-    size,
-    onListEnd,
-}: CharactersGridProps) {
+export function CharactersGrid({ items, onListEnd }: CharactersGridProps) {
     return (
         <div className={styles.gridcontainer}>
             <InfiniteScroll lastItemHandler={onListEnd}>

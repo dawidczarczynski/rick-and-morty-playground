@@ -1,6 +1,5 @@
 import { extractTotalCount, mergeResponseResults } from 'shared/api';
-import { Character } from 'characters/model/character';
-import { CharactersParams } from 'characters/model/characterParams';
+import { CharactersParams, Character } from 'characters/model';
 import { useAllCharactersRequest } from 'characters/hooks/useAllCharactersRequest';
 
 export interface UseCharactersResult {
@@ -10,14 +9,14 @@ export interface UseCharactersResult {
     loading: boolean;
 }
 
-export function useCharacters(params: CharactersParams): UseCharactersResult {
+export function useCharacters(params?: CharactersParams): UseCharactersResult {
     const {
         data,
         hasNextPage = false,
         fetchNextPage,
         isLoading,
         isFetching,
-    } = useAllCharactersRequest(params);
+    } = useAllCharactersRequest(params || {});
 
     return {
         characters: mergeResponseResults<Character>(data?.pages),
