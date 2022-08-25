@@ -8,8 +8,7 @@ import {
 } from './characterFiltersConstants';
 
 import styles from './characterFilters.module.css';
-import { useEffect } from 'react';
-import { useDebounce } from 'shared/hooks/useDebounce';
+import { useFormChangeSubscription } from 'shared/hooks/useFormValueSubscription';
 
 interface CharacterFiltersProps extends UseFormReturn<CharacterFiltersValue> {
     onClear: () => void;
@@ -22,12 +21,7 @@ export function CharacterFilters({
     onChange,
     watch,
 }: CharacterFiltersProps) {
-    const debouncedOnChange = useDebounce({ callback: onChange, delay: 500 });
-    useEffect(() => {
-        const subscription = watch(filters => debouncedOnChange(filters));
-        return () => subscription.unsubscribe();
-    }, [debouncedOnChange, watch]);
-
+    useFormChangeSubscription<CharacterFiltersValue>(onChange, watch);
     return (
         <form>
             <div className={styles.filtersection}>

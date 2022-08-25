@@ -2,7 +2,7 @@ import { CharactersGrid } from 'characters/components/CharactersGrid';
 import { NoCharacters } from 'characters/components/NoCharacters';
 import { CharacterFilters } from 'characters/components/CharacterFilters';
 import { useCharacters } from 'characters/hooks/useCharacters';
-import { useCharacterFiltersForm } from 'characters/hooks/useCharacterFilters';
+import { useCharacterFiltersForm } from 'characters/hooks/useCharacterFiltersForm';
 import { Content } from 'layout/components/Content';
 import { Sidebar } from 'layout/components/Sidebar';
 
