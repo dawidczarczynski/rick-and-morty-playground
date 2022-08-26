@@ -1,4 +1,4 @@
-import { useInfiniteQuery } from '@tanstack/react-query';
+import { QueryFunctionContext, useInfiniteQuery } from '@tanstack/react-query';
 import {
     ApiResponse,
     extractTotalCount,
@@ -14,6 +14,14 @@ export interface UseCharactersResult {
     loading: boolean;
 }
 
+const characterRequestHandler = ({
+    pageParam,
+    queryKey,
+}: QueryFunctionContext<[string, CharactersParams]>) => {
+    const [, params] = queryKey;
+    return fetchCharacters({ page: pageParam, params });
+};
+
 export function useCharacters(params?: CharactersParams): UseCharactersResult {
     const {
         data,
@@ -26,7 +34,7 @@ export function useCharacters(params?: CharactersParams): UseCharactersResult {
         Error,
         ApiResponse<Character[]>,
         [string, CharactersParams]
-    >(['characters', params || {}], fetchCharacters, {
+    >(['characters', params || {}], characterRequestHandler, {
         getNextPageParam: lastPage => lastPage.info.next, //eg. https://rickandmortyapi.com/api/character?page=2&name=rick
     });
 
