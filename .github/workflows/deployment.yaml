@@ -11,6 +11,8 @@ jobs:
         runs-on: ubuntu-latest
         steps:
             - uses: actions/checkout@v3
+              with:
+                  fetch-depth: 0
 
             - name: Setup Node
               uses: actions/setup-node@v3
@@ -25,6 +27,12 @@ jobs:
 
             - name: Test
               run: yarn test --coverage .
+
+            - name: SonarCloud Scan
+              uses: SonarSource/sonarcloud-github-action@master
+              env:
+                  GITHUB_TOKEN: ${{ secrets.ACCESS_TOKEN }}
+                  SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
 
             - name: Upload production-ready build files
               uses: actions/upload-artifact@v2
