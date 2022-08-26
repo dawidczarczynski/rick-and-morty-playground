@@ -7,6 +7,7 @@ on:
 
 jobs:
     build:
+        name: Build
         runs-on: ubuntu-latest
         steps:
             - uses: actions/checkout@v3
@@ -24,11 +25,6 @@ jobs:
 
             - name: Test
               run: yarn test --coverage .
-
-            - name: Generating coverage badges
-              uses: jpb06/jest-badges-action@latest
-              with:
-                  coverage-summary-path: ./coverage/coverage-summary.json
 
             - name: Upload production-ready build files
               uses: actions/upload-artifact@v2
