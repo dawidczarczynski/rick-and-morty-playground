@@ -1,12 +1,10 @@
-import { QueryFunctionContext, useInfiniteQuery } from '@tanstack/react-query';
-import { Character } from 'characters/model/character';
-import { CharactersParams } from 'characters/model/characterParams';
-import { ApiResponse, ApiRequestParams, makeRequest } from 'shared/api';
+import { QueryFunctionContext } from '@tanstack/react-query';
+import { CharactersParams, Character } from 'characters/model';
+import { ApiRequestParams, makeRequest } from 'shared/api';
 
-const CHARACTERS_RESOURCE_NAME = 'character';
 const CHARACTERS_RESOURCE_URI = 'https://rickandmortyapi.com/api/character';
 
-function fetchCharacters({
+export function fetchCharacters({
     pageParam,
     queryKey,
 }: QueryFunctionContext<[string, CharactersParams], string>) {
@@ -24,15 +22,4 @@ function fetchCharacters({
         : {};
 
     return makeRequest<Character[]>(requestURL, requestParams);
-}
-
-export function useAllCharactersRequest(params: CharactersParams) {
-    return useInfiniteQuery<
-        ApiResponse<Character[]>,
-        Error,
-        ApiResponse<Character[]>,
-        [string, CharactersParams]
-    >([CHARACTERS_RESOURCE_NAME, params], fetchCharacters, {
-        getNextPageParam: lastPage => lastPage.info.next, //eg. https://rickandmortyapi.com/api/character?page=2&name=rick
-    });
 }

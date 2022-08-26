@@ -1,6 +1,11 @@
-import { extractTotalCount, mergeResponseResults } from 'shared/api';
+import { useInfiniteQuery } from '@tanstack/react-query';
+import {
+    ApiResponse,
+    extractTotalCount,
+    mergeResponseResults,
+} from 'shared/api';
 import { CharactersParams, Character } from 'characters/model';
-import { useAllCharactersRequest } from 'characters/hooks/useAllCharactersRequest';
+import { fetchCharacters } from 'characters/functions/fetchCharacters';
 
 export interface UseCharactersResult {
     totalCount: number;
@@ -16,7 +21,14 @@ export function useCharacters(params?: CharactersParams): UseCharactersResult {
         fetchNextPage,
         isLoading,
         isFetching,
-    } = useAllCharactersRequest(params || {});
+    } = useInfiniteQuery<
+        ApiResponse<Character[]>,
+        Error,
+        ApiResponse<Character[]>,
+        [string, CharactersParams]
+    >(['characters', params || {}], fetchCharacters, {
+        getNextPageParam: lastPage => lastPage.info.next, //eg. https://rickandmortyapi.com/api/character?page=2&name=rick
+    });
 
     return {
         characters: mergeResponseResults<Character>(data?.pages),
