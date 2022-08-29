@@ -1,6 +1,9 @@
 # Rick and Morty React Playground
 
 [![Build](https://github.com/dawidczarczynski/rick-and-morty-playground/actions/workflows/deployment.yaml/badge.svg)](https://github.com/dawidczarczynski/rick-and-morty-playground/actions/workflows/deployment.yaml)
+[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=dawidczarczynski_rick-and-morty-playground&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=dawidczarczynski_rick-and-morty-playground)
+[![Coverage](https://sonarcloud.io/api/project_badges/measure?project=dawidczarczynski_rick-and-morty-playground&metric=coverage)](https://sonarcloud.io/summary/new_code?id=dawidczarczynski_rick-and-morty-playground)
+[![Lines of Code](https://sonarcloud.io/api/project_badges/measure?project=dawidczarczynski_rick-and-morty-playground&metric=ncloc)](https://sonarcloud.io/summary/new_code?id=dawidczarczynski_rick-and-morty-playground)
 
 Example React application created for training and educational purposes.
 It utilises open [Rick and Morty API](https://rickandmortyapi.com/documentation).
