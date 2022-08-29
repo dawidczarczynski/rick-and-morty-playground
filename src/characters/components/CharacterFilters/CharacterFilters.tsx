@@ -8,7 +8,7 @@ import {
 } from './characterFiltersConstants';
 
 import styles from './characterFilters.module.css';
-import { useFormChangeSubscription } from 'shared/hooks/useFormValueSubscription';
+import { useFormChangeSubscription } from 'shared/hooks/useFormChangeSubscription';
 
 interface CharacterFiltersProps extends UseFormReturn<CharacterFiltersValue> {
     onClear: () => void;
