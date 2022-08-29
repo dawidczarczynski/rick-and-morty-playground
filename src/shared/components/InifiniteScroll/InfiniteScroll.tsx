@@ -5,7 +5,6 @@ interface InfiniteScrollProps {
     lastItemHandler: () => void;
 }
 
-// TODO: Improve infinite scroll and virtualization
 export function InfiniteScroll({
     children,
     lastItemHandler,

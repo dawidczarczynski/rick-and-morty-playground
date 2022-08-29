@@ -6,7 +6,6 @@
 .statusIndicator {
     height: 45px;
     width: 45px;
-    display: block;
     margin-right: var(--spacing-1);
     border-radius: 50%;
     display: flex;

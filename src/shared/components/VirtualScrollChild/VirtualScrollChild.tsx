@@ -5,7 +5,6 @@ interface VirtualScrollChildProps {
     height: number;
 }
 
-// TODO: Improve infinite scroll and virtualization
 export function VirtualScrollChild({
     height,
     children,
