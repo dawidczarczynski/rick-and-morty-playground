@@ -17,10 +17,7 @@ export function CharactersGrid({ items, onListEnd }: CharactersGridProps) {
                 {items.map(character => (
                     <VirtualScrollChild key={character.id} height={470}>
                         <div className={styles.griditem}>
-                            <CharacterCard
-                                data-testid="character"
-                                character={character}
-                            />
+                            <CharacterCard character={character} />
                         </div>
                     </VirtualScrollChild>
                 ))}

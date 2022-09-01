@@ -29,9 +29,8 @@ export function CharactersPage() {
                 {!loading && !characters?.length && (
                     <NoCharacters clearFilters={clearFiltersForm} />
                 )}
-                {characters && (
+                {!!characters?.length && (
                     <CharactersGrid
-                        data-testid="characters-list"
                         items={characters}
                         onListEnd={fetchNextPage}
                     />
