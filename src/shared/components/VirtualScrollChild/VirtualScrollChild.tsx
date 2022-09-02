@@ -14,6 +14,7 @@ export function VirtualScrollChild({
         height: `${height}px`,
         overflow: 'hidden',
     };
+
     return (
         <div style={style} ref={ref}>
             {inView ? children : null}

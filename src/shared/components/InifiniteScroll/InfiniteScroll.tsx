@@ -21,7 +21,10 @@ export function InfiniteScroll({
     return (
         <>
             {Children.map(children, (child, index) => (
-                <div ref={index === childrenCount - 1 ? lastItemRef : null}>
+                <div
+                    data-testid="child-ref"
+                    ref={index === childrenCount - 1 ? lastItemRef : null}
+                >
                     {child}
                 </div>
             ))}
