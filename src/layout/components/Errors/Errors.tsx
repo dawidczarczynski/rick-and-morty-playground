@@ -15,7 +15,7 @@ export function Errors() {
     });
 
     return (
-        <div className={getContainerClass(error)}>
+        <div data-testid="errors" className={getContainerClass(error)}>
             <Message severity="error">{error}</Message>
         </div>
     );
