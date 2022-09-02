@@ -1,6 +1,5 @@
 import { render, screen } from '@testing-library/react';
 import { useError } from 'shared/hooks/useError';
-
 import { Errors } from './Errors';
 
 jest.mock('shared/hooks/useError', () => ({
@@ -20,10 +19,9 @@ describe('Errors', () => {
     });
 
     it('should clear error after timeout', () => {
-        const testError = 'test error message';
         const clearErrorMock = jest.fn();
         useErrorMock.mockReturnValue({
-            error: testError,
+            error: '',
             clearError: clearErrorMock,
         });
         jest.useFakeTimers();
